@@ -22,8 +22,8 @@ metadata:
       ]
     capabilities: Seamless Upgrades
     cloudPakThemesVersion: styles4100.css
-    containerImage: icr.io/cpopen/common-service-operator:4.14.0
-    createdAt: "2025-05-16T03:15:01Z"
+    containerImage: icr.io/cpopen/common-service-operator@sha256:50e585a9e0a6a968af2285516f69f908c360506968bc3ba68b27c5574444de20
+    createdAt: "2025-03-18T21:27:31Z"
     description: The IBM Cloud Pak foundational services operator is used to deploy IBM foundational services.
     features.operators.openshift.io/disconnected: "true"
     features.operators.openshift.io/fips-compliant: "true"
@@ -34,9 +34,9 @@ metadata:
     features.operators.openshift.io/token-auth-gcp: "false"
     nss.operator.ibm.com/managed-operators: ibm-common-service-operator
     nss.operator.ibm.com/managed-webhooks: ""
-    olm.skipRange: ">=3.3.0 <4.14.0"
-    operatorChannel: v4.14
-    operatorVersion: 4.14.0
+    olm.skipRange: ">=3.3.0 <4.12.0"
+    operatorChannel: v4.12
+    operatorVersion: 4.12.0
     operators.openshift.io/infrastructure-features: '["disconnected"]'
     operators.operatorframework.io/builder: operator-sdk-v1.38.0
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v4
@@ -47,7 +47,7 @@ metadata:
     operatorframework.io/arch.ppc64le: supported
     operatorframework.io/arch.s390x: supported
     operatorframework.io/os.linux: supported
-  name: ibm-common-service-operator.v4.14.0
+  name: ibm-common-service-operator.v4.12.0
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -207,7 +207,7 @@ spec:
 
     ## Operator versions
 
-     - 4.14.0
+     - 4.12.0
 
     ## Prerequisites
 
@@ -384,8 +384,8 @@ spec:
                       - name: OPERATOR_NAME
                         value: ibm-common-service-operator
                       - name: CPFS_UTILS_IMAGE
-                        value: icr.io/cpopen/cpfs/cpfs-utils:latest
-                    image: icr.io/cpopen/common-service-operator:4.14.0
+                        value: icr.io/cpopen/cpfs/cpfs-utils@sha256:0fdf1beeb4888f648f6dbd17a29dcc53a715d2c4301bc714a4172b2daf8d13be
+                    image: icr.io/cpopen/common-service-operator@sha256:50e585a9e0a6a968af2285516f69f908c360506968bc3ba68b27c5574444de20
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       failureThreshold: 10
@@ -610,13 +610,6 @@ spec:
                 - patch
                 - update
                 - watch
-            - apiGroups:
-                - postgresql.k8s.enterprisedb.io
-              resources:
-                - clusters
-              verbs:
-                - get
-                - list
           serviceAccountName: ibm-common-service-operator
     strategy: deployment
   installModes:
@@ -641,7 +634,7 @@ spec:
   minKubeVersion: 1.19.0
   provider:
     name: IBM
-  version: 4.14.0
+  version: 4.12.0
   webhookdefinitions:
     - admissionReviewVersions:
         - v1
@@ -684,11 +677,12 @@ spec:
       type: ValidatingAdmissionWebhook
       webhookPath: /validate-operator-ibm-com-v3-commonservice
   relatedImages:
-    - image: icr.io/cpopen/common-service-operator:4.14.0
+    - image: icr.io/cpopen/common-service-operator@sha256:50e585a9e0a6a968af2285516f69f908c360506968bc3ba68b27c5574444de20
       name: COMMON_SERVICE_OPERATOR_IMAGE
-    - image: icr.io/cpopen/cpfs/cpfs-utils:latest
+    - image: icr.io/cpopen/cpfs/cpfs-utils@sha256:0fdf1beeb4888f648f6dbd17a29dcc53a715d2c4301bc714a4172b2daf8d13be
       name: CPFS_UTILS_IMAGE
-    - image: icr.io/cpopen/cpfs/must-gather:latest
+    - image: icr.io/cpopen/cpfs/must-gather@sha256:4209e78f12120b9c9f320496b780c3993a9317825ea17dc7d554452b28c99014
       name: MUST_GATHER_IMAGE
-    - image: icr.io/cpopen/cpfs/cpfs-oadp-plugins:4.14.0
+    - image: icr.io/cpopen/cpfs/cpfs-oadp-plugins@sha256:9a537eae7e581322e2f0764ed38a797ba7cd260724a285f24d5095058b7b47a0
       name: CPFS_OADP_PLUGINS_IMAGE
+      
